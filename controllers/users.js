@@ -41,7 +41,7 @@ const createUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequestError(messages.movies.badData));
+        next(new BadRequestError(messages.user.badData));
       } else if (err.code === 11000) {
         next(new ConflictError(messages.user.conflictEmail));
       } else {
@@ -64,6 +64,8 @@ const updateUserProfile = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'CastError') {
         next(new BadRequestError(messages.user.updateBadData));
+      } else if (err.code === 11000) {
+        next(new ConflictError(messages.user.conflictEmail));
       } else {
         next(err);
       }

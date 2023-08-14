@@ -2,6 +2,7 @@
 const allowedCors = [
   'https://diploma-by-anastasiia.nomoreparties.co',
   'http://diploma-by-anastasiia.nomoreparties.co',
+  'http://localhost:3000',
 ];
 // Значение для заголовка Access-Control-Allow-Methods по умолчанию (разрешены все типы запросов)
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
