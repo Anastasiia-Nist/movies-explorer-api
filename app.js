@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
+const cors = require('cors');
 const limiter = require('./utils/limiter');
 const routes = require('./routes');
-const corsMiddleware = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorsMiddleware = require('./middlewares/errors');
 const { SERVER_PORT, DB } = require('./env.config');
@@ -24,7 +24,16 @@ app.use(requestLogger);
 // ограничение кол-во запросов. Для защиты от DoS-атак.
 app.use(limiter);
 
-app.use(corsMiddleware);
+app.use(
+  cors({
+    origin: [
+      'https://diploma-by-anastasiia.nomoreparties.co',
+      'http://diploma-by-anastasiia.nomoreparties.co',
+      'http://localhost:3006',
+    ],
+    credentials: true,
+  }),
+);
 
 app.use(routes);
 
