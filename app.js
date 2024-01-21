@@ -27,8 +27,6 @@ app.use(limiter);
 app.use(
   cors({
     origin: [
-      'https://diploma-by-anastasiia.nomoreparties.co',
-      'http://diploma-by-anastasiia.nomoreparties.co',
       'http://localhost:3006',
     ],
     credentials: true,
